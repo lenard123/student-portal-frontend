@@ -17,8 +17,16 @@ export const useFaculty = (id) => {
         loading.value = false;
       }
     };
+
+    const addSubject = async (payload) => {
+      const { data } = await api.post(`/faculties/${id}/subjects`, payload);
+      faculty.value.subjects = data;
+      return data;
+    };
+
     return {
       fetch,
+      addSubject,
       faculty,
       initialize,
       loading,

@@ -11,22 +11,57 @@
           <div class="tw-text-gray-600">{{ store.faculty.email }}</div>
         </q-card-section>
       </q-card>
-      <q-table class="tw-col-span-2" />
+      <q-table
+        class="tw-col-span-2"
+        :columns="columns"
+        :rows="store.faculty.subjects"
+      >
+        <template v-slot:top-left>
+          <div class="tw-text-xl tw-font-bold">Subjects</div>
+        </template>
+        <template v-slot:top-right>
+          <q-btn
+            @click="addSubject"
+            unelevated
+            label="Add Subject"
+            icon="add"
+            color="primary"
+          />
+        </template>
+      </q-table>
     </div>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore vel
-    molestias molestiae! Eos error quia impedit non reprehenderit eaque,
-    adipisci aliquid consequuntur similique assumenda dicta amet deleniti hic,
-    ab rerum!
   </div>
 </template>
 
 <script setup>
+import { useQuasar } from "quasar";
 import { useFaculty } from "src/stores/faculty";
 import { onMounted } from "vue";
 import { useRoute } from "vue-router";
+import AddSubjectDialog from "./AddSubjectDialog.vue";
 
 const route = useRoute();
 const store = useFaculty(route.params.id);
+
+const columns = [
+  { name: "name", label: "Subject", align: "left", field: "name" },
+  {
+    name: "grade_level",
+    label: "Grade Level",
+    field: (row) => row.grade_level.name,
+  },
+  { name: "action", label: "Action" },
+];
+const $q = useQuasar();
+const addSubject = () => {
+  $q.dialog({
+    component: AddSubjectDialog,
+    componentProps: {
+      department: store.faculty.department,
+      faculty_id: store.faculty.id,
+    },
+  });
+};
 
 onMounted(() => {
   store.fetch();
