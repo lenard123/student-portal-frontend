@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-import { Loading } from "quasar";
 import { ref } from "vue";
 
 export const useAppStore = (option) =>

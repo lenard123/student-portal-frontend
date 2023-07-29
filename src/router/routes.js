@@ -47,6 +47,12 @@ const routes = [
         component: () => import("pages/admin/faculties/FacultiesIndexPage.vue"),
       },
       {
+        path: "faculties/:id",
+        name: "admin:faculties/info",
+        component: () =>
+          import("pages/admin/faculties/[id]/FacultyInfoPage.vue"),
+      },
+      {
         path: "subjects",
         name: "admin:subjects",
         component: () => import("pages/admin/subjects/SubjectsIndexPage.vue"),
@@ -55,6 +61,12 @@ const routes = [
         path: "grade-levels",
         name: "admin:grade-levels",
         component: () => import("pages/admin/grade-levels/GradeLevelsPage.vue"),
+      },
+      {
+        path: "grade-levels/:id",
+        name: "admin:grade-levels/curriculum",
+        component: () =>
+          import("pages/admin/grade-levels/[id]/ManageCurriculumPage.vue"),
       },
       {
         path: "school-year",

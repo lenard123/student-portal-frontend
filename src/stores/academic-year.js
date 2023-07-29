@@ -5,8 +5,16 @@ import { useAppStore } from "./app";
 
 export const useAcademicYearStore = defineStore("academic-year", () => {
   const academicYears = ref([]);
+  const activeAcademicYear = ref(null);
   const loading = ref(false);
   const appStore = useAppStore();
+
+  const fetchActiveAcademicYear = async () => {
+    const { data } = await api.get("/academic-years/active");
+    activeAcademicYear.value = data;
+    return data;
+  };
+
   const fetchAll = async () => {
     try {
       loading.value = false;
@@ -35,6 +43,8 @@ export const useAcademicYearStore = defineStore("academic-year", () => {
   });
 
   return {
+    activeAcademicYear,
+    fetchActiveAcademicYear,
     academicYears,
     departmentAcadamicYears,
     fetchAll,

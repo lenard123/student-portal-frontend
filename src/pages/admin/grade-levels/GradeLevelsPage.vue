@@ -21,20 +21,36 @@
           />
         </q-tabs>
       </template>
+      <template v-slot:body-cell-action="{ row }">
+        <q-td align="right">
+          <q-btn
+            label="Manage Curriculum"
+            v-if="academicYearStore.activeAcademicYear[department] != null"
+            flat
+            :to="{
+              name: 'admin:grade-levels/curriculum',
+              params: { id: row.id },
+            }"
+          />
+        </q-td>
+      </template>
     </q-table>
   </div>
 </template>
 
 <script setup>
+import { useAcademicYearStore } from "src/stores/academic-year";
 import { useAppStore } from "src/stores/app";
 import { useGradeLevelsStore } from "src/stores/grade-levels";
 import { computed, onMounted, ref } from "vue";
 
 const appStore = useAppStore();
+const academicYearStore = useAcademicYearStore();
 const store = useGradeLevelsStore();
 const department = ref(appStore.departments[0].id);
 const columns = [
   { name: "name", label: "Grade Level", align: "left", field: "name" },
+  { name: "action", label: "Action" },
 ];
 const rows = computed(() => {
   return store.departmentGradeLevels[department.value];
