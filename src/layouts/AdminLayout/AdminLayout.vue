@@ -24,14 +24,9 @@
             <q-separator class="tw-my-2" />
             <div class="tw-flex tw-gap-2">
               <q-btn unelevated icon="person" color="primary" />
+              <q-btn unelevated icon="lock" color="primary" />
               <q-btn
-                @click="handleClick2"
-                unelevated
-                icon="lock"
-                color="primary"
-              />
-              <q-btn
-                @click="handleClick"
+                @click="handleLogout"
                 unelevated
                 icon="logout"
                 color="primary"
@@ -67,13 +62,19 @@
               </q-item-section>
               <q-item-section>Students</q-item-section>
             </q-item>
+            <q-item :to="{ name: 'admin:grade-levels' }" clickable>
+              <q-item-section avatar>
+                <q-icon name="trending_up" />
+              </q-item-section>
+              <q-item-section>Grade Levels</q-item-section>
+            </q-item>
             <q-item clickable>
               <q-item-section avatar>
                 <q-icon name="class" />
               </q-item-section>
               <q-item-section>Classes</q-item-section>
             </q-item>
-            <q-item clickable>
+            <q-item :to="{ name: 'admin:subjects' }" clickable>
               <q-item-section avatar>
                 <q-icon name="library_books" />
               </q-item-section>
@@ -81,7 +82,11 @@
             </q-item>
             <q-expansion-item icon="settings" label="Settings">
               <q-list>
-                <q-item :inset-level="1" clickable>
+                <q-item
+                  :to="{ name: 'admin:school-year' }"
+                  :inset-level="1"
+                  clickable
+                >
                   <q-item-section>
                     <q-item-label>School Year</q-item-label>
                   </q-item-section>
@@ -102,36 +107,35 @@
     v-if="appStore.confirmDialog"
     :model-value="true"
     v-bind="appStore.confirmDialog"
-    :submitButton="{ label: 'Submit' }"
-    @submit="appStore.confirmDialog?.onSubmit"
+    :submitButton="{
+      label: 'Submit',
+      loading: appStore.confirmDialog.loading,
+    }"
+    @submit="appStore.confirmDialog.submit"
     @cancel="appStore.closeDialog"
   />
 </template>
 
 <script setup>
+import { Loading } from "quasar";
 import AppConfirmDialog from "src/components/AppConfirmDialog.vue";
 import { useAppStore } from "src/stores/app";
 import { useAuthStore } from "src/stores/auth";
+import { Notify } from "src/utils";
+import { useRouter } from "vue-router";
 
 const store = useAuthStore();
 const appStore = useAppStore();
+const router = useRouter();
 
-const handleClick = () => {
+const handleLogout = () => {
   appStore.showDialog({
-    title: "test",
-    message: "test",
-    onSubmit: () => {
-      console.log("nice");
-    },
-  });
-};
-
-const handleClick2 = () => {
-  appStore.showDialog({
-    title: "test2",
-    message: "test2",
-    onSubmit: () => {
-      console.log("nice2");
+    title: "Confirm",
+    message: "Are you sure to logout?",
+    onSubmit: async () => {
+      await store.logout();
+      router.push({ name: "login" });
+      Notify.success("Logout successfully");
     },
   });
 };

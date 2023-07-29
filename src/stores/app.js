@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { Loading } from "quasar";
 import { ref } from "vue";
 
 export const useAppStore = (option) =>
@@ -11,6 +12,17 @@ export const useAppStore = (option) =>
 
     const showDialog = (data) => {
       confirmDialog.value = data;
+      confirmDialog.value.loading = false;
+      confirmDialog.value.submit = async function () {
+        confirmDialog.value.loading = true;
+        try {
+          await data.onSubmit();
+          closeDialog();
+        } catch (err) {
+        } finally {
+          confirmDialog.value.loading = true;
+        }
+      };
     };
 
     const departments = [
@@ -28,5 +40,3 @@ export const useAppStore = (option) =>
       option,
     };
   })();
-
-export const useConfirmDialog = () => {};

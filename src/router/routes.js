@@ -46,6 +46,21 @@ const routes = [
         name: "admin:faculties",
         component: () => import("pages/admin/faculties/FacultiesIndexPage.vue"),
       },
+      {
+        path: "subjects",
+        name: "admin:subjects",
+        component: () => import("pages/admin/subjects/SubjectsIndexPage.vue"),
+      },
+      {
+        path: "grade-levels",
+        name: "admin:grade-levels",
+        component: () => import("pages/admin/grade-levels/GradeLevelsPage.vue"),
+      },
+      {
+        path: "school-year",
+        name: "admin:school-year",
+        component: () => import("pages/admin/school-year/SchoolYearPage.vue"),
+      },
     ],
   },
 
