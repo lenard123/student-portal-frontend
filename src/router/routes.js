@@ -69,6 +69,17 @@ const routes = [
           import("pages/admin/grade-levels/[id]/ManageCurriculumPage.vue"),
       },
       {
+        path: "sections",
+        name: "admin:sections",
+        component: () => import("pages/admin/sections/SectionsPage.vue"),
+      },
+      {
+        path: "sections/:id",
+        name: "admin:sections/info",
+        component: () =>
+          import("pages/admin/sections/[id]/SectionInfoPage.vue"),
+      },
+      {
         path: "school-year",
         name: "admin:school-year",
         component: () => import("pages/admin/school-year/SchoolYearPage.vue"),

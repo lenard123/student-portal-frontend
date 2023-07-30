@@ -42,7 +42,14 @@ export const useAcademicYearStore = defineStore("academic-year", () => {
     }, {});
   });
 
+  const activeDepartmentOptions = computed(() => {
+    return appStore.departments.filter((department) => {
+      return activeAcademicYear.value[department.id] != null;
+    });
+  });
+
   return {
+    activeDepartmentOptions,
     activeAcademicYear,
     fetchActiveAcademicYear,
     academicYears,

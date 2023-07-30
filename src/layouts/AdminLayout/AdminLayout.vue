@@ -68,7 +68,7 @@
               </q-item-section>
               <q-item-section>Grade Levels</q-item-section>
             </q-item>
-            <q-item clickable>
+            <q-item :to="{ name: 'admin:sections' }" clickable>
               <q-item-section avatar>
                 <q-icon name="class" />
               </q-item-section>

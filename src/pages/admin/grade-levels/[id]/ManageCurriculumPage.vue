@@ -10,9 +10,9 @@
         <q-card-section class="tw-flex tw-flex-col tw-text-lg">
           <div class="tw-flex tw-justify-between">
             <span class="tw-text-base">Total Subjects:</span>
-            <spa class="tw-text-gray-500 tw-font-bold">
+            <span class="tw-text-gray-500 tw-font-bold">
               {{ store.level.subjects.length }}
-            </spa>
+            </span>
           </div>
           <div
             class="tw-flex tw-justify-between tw-mt-2"
@@ -20,14 +20,14 @@
             :key="fee.id"
           >
             <span class="tw-text-base">{{ fee.fee }}:</span>
-            <spa class="tw-text-gray-500 tw-font-bold">{{ fee.amount }}</spa>
+            <span class="tw-text-gray-500 tw-font-bold">{{ fee.amount }}</span>
           </div>
           <q-separator />
           <div class="tw-flex tw-justify-between">
             <span class="tw-text-base">Total Amount:</span>
-            <spa class="tw-text-gray-500 tw-font-bold">
+            <span class="tw-text-gray-500 tw-font-bold">
               {{ store.level.fees.reduce((acm, fee) => acm + fee.amount, 0) }}
-            </spa>
+            </span>
           </div>
         </q-card-section>
       </q-card>
