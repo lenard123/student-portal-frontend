@@ -43,3 +43,21 @@ const formatter = new Intl.NumberFormat("en-US", {
 export const numberFormat = (n) => {
   return formatter.format(n);
 };
+
+const colors = [
+  "tw-bg-blue-500",
+  "tw-bg-yellow-500",
+  "tw-bg-green-500",
+  "tw-bg-orange-500",
+  "tw-bg-purple-500",
+  "tw-bg-emerald-500",
+  "tw-bg-teal-500",
+  "tw-bg-sky-500",
+  "tw-bg-indigo-500",
+  "tw-bg-violet-500",
+];
+
+export const getBackgroundColor = (seed) => {
+  let index = seed % colors.length;
+  return colors[index];
+};

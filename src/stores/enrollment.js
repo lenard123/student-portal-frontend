@@ -6,6 +6,7 @@ export const useEnrollee = (enrollee_id) => {
   return defineStore(`enrollment:${enrollee_id}`, () => {
     const enrollee = ref(null);
     const loading = ref(false);
+
     const fetch = async () => {
       try {
         loading.value = true;
@@ -16,10 +17,18 @@ export const useEnrollee = (enrollee_id) => {
       }
     };
 
+    const enroll = async (section_id) => {
+      const { data } = await api.patch(`/enrollment/${enrollee_id}/enroll`, {
+        section_id,
+      });
+      enrollee.value = data;
+    };
+
     return {
       enrollee,
       fetch,
       loading,
+      enroll,
     };
   })();
 };

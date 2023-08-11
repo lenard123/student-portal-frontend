@@ -76,17 +76,29 @@
     </q-card>
 
     <div class="tw-flex justify-end tw-mt-8 tw-gap-4">
-      <q-btn label="Reject" color="orange" />
-      <q-btn label="Enroll" color="primary" />
+      <q-btn
+        label="Reject"
+        color="orange"
+        v-if="enrollee.status == 'pending'"
+      />
+      <q-btn
+        label="Enroll"
+        color="primary"
+        @click="enroll"
+        v-if="enrollee.status == 'pending'"
+      />
     </div>
   </div>
 </template>
 <script>
 import { LoadingBar } from "quasar";
 import { api } from "src/boot/axios";
+import useDialog from "src/composables/useDialog";
 import { useEnrollee } from "src/stores/enrollment";
 import { numberFormat } from "src/utils";
 import { useRoute } from "vue-router";
+import EnrollDialog from "./components/EnrollDialog.vue";
+import { computed } from "vue";
 
 export default {
   setup() {
@@ -108,10 +120,22 @@ export default {
       },
     ];
 
+    const { dialog } = useDialog();
+
+    const enroll = () => {
+      dialog({
+        component: EnrollDialog,
+        componentProps: {
+          enrollee_id: route.params.id,
+        },
+      });
+    };
+
     return {
-      enrollee: store.enrollee,
+      enrollee: computed(() => store.enrollee),
       subjectColumns,
       feesColumns,
+      enroll,
     };
   },
   async beforeRouteEnter(to) {

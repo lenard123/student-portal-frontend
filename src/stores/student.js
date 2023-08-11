@@ -3,9 +3,16 @@ import { api } from "src/boot/axios";
 import { onBeforeUnmount, onMounted, onUnmounted, ref } from "vue";
 
 export const useStudentsStore = defineStore("students", () => {
+  const subjects = ref([]);
+
   const sendOtp = async (payload) => {
     const { data } = await api.post("/students/send-otp", payload);
     return data;
+  };
+
+  const fetchSubjects = async () => {
+    const { data } = await api.get("/student/subjects");
+    subjects.value = data;
   };
 
   const register = async (payload) => {
@@ -16,6 +23,8 @@ export const useStudentsStore = defineStore("students", () => {
   return {
     sendOtp,
     register,
+    fetchSubjects,
+    subjects,
   };
 });
 
