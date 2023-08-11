@@ -13,7 +13,7 @@ export default boot(async (/* { app, router, ... } */) => {
   Loading.show();
   try {
     await initializeCSRFCookie();
-    await fetchCurrentUser();
+    // await fetchCurrentUser();
     await fetchActiveAcademicYear();
   } catch (err) {
   } finally {

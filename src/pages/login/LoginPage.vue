@@ -18,7 +18,7 @@
     </div>
     <div class="tw-flex-grow tw-bg-red-100 background tw-py-8">
       <div
-        class="tw-w-full tw-max-w-[700px] tw-mx-auto tw-h-full tw-rounded-3xl tw-shadow-md tw-overflow-hidden tw-grid tw-grid-cols-2"
+        class="tw-w-full tw-max-w-[60vw] tw-mx-auto tw-h-full tw-rounded-3xl tw-shadow-md tw-overflow-hidden tw-grid tw-grid-cols-2"
       >
         <div
           class="tw-bg-primary tw-flex tw-flex-col tw-items-center tw-justify-end tw-px-4"
@@ -86,13 +86,14 @@
 
 <script setup>
 import { Loading } from "quasar";
-import { useAuthStore } from "src/stores/auth";
+import { ROLE_ADMIN, ROLE_STUDENT, useAuthStore } from "src/stores/auth";
 import { reactive, ref } from "vue";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
+const route = useRoute();
 const data = reactive({
   role: "Student",
-  email: "",
+  email: route.query.email,
   password: "",
 });
 const isPwd = ref(true);
@@ -105,8 +106,12 @@ const handleSubmit = () => {
   login({ ...data, role: data.role.toLowerCase() })
     .then((user) => {
       switch (user.role) {
-        case "admin":
+        case ROLE_ADMIN:
           router.push({ name: "admin:announcements" });
+          break;
+        case ROLE_STUDENT:
+          router.push({ name: "student:home" });
+          break;
       }
     })
     .finally(() => {

@@ -35,6 +35,16 @@
           <q-chip v-if="row.status == 'preparation'" label="Preparation" />
         </q-td>
       </template>
+      <template v-slot:body-cell-action="{ row }">
+        <q-td auto-width>
+          <q-btn
+            v-if="row.status == 'preparation'"
+            label="Start Enrollment"
+            unelevated
+            color="green"
+          />
+        </q-td>
+      </template>
     </q-table>
   </div>
 </template>

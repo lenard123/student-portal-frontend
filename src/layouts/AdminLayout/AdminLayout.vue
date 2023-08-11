@@ -56,11 +56,11 @@
               <q-item-section>Faculty</q-item-section>
             </q-item>
 
-            <q-item clickable>
+            <q-item clickable :to="{ name: 'admin:pre-enrollment' }">
               <q-item-section avatar>
                 <q-icon name="mdi-account-school" />
               </q-item-section>
-              <q-item-section>Students</q-item-section>
+              <q-item-section>Pre-Enrollment</q-item-section>
             </q-item>
             <q-item :to="{ name: 'admin:grade-levels' }" clickable>
               <q-item-section avatar>
@@ -117,7 +117,7 @@
 </template>
 
 <script setup>
-import { Loading } from "quasar";
+import { LoadingBar } from "quasar";
 import AppConfirmDialog from "src/components/AppConfirmDialog.vue";
 import { useAppStore } from "src/stores/app";
 import { useAuthStore } from "src/stores/auth";
@@ -138,5 +138,22 @@ const handleLogout = () => {
       Notify.success("Logout successfully");
     },
   });
+};
+</script>
+
+<script>
+export default {
+  async beforeRouteEnter(to, from, next) {
+    const store = useAuthStore();
+    LoadingBar.start();
+    try {
+      if (store.user?.role != "admin") await store.fetchCurrentUser();
+      next();
+    } catch (err) {
+      next({ name: "login" });
+    } finally {
+      LoadingBar.stop();
+    }
+  },
 };
 </script>

@@ -14,7 +14,12 @@
       </div>
       <div>
         <q-btn :to="{ name: 'login' }" label="Login" flat />
-        <q-btn class="tw-ml-4" label="Register" color="orange" />
+        <q-btn
+          @click="register"
+          class="tw-ml-4"
+          label="Register"
+          color="orange"
+        />
       </div>
     </header>
     <section class="background tw-px-8">
@@ -32,7 +37,12 @@
             growth so that<br />
             they may realize their power for good as citizens
           </p>
-          <q-btn label="Register Now" color="orange" size="lg" />
+          <q-btn
+            @click="register"
+            label="Register Now"
+            color="orange"
+            size="lg"
+          />
         </div>
         <div class="tw-w-1/2 tw-flex justify-center">
           <img class="tw-w-1/2" src="./assets/undraw_online_test_re_kyfx.svg" />
@@ -140,6 +150,18 @@
     </div>
   </div>
 </template>
+
+<script setup>
+import { useQuasar } from "quasar";
+import RegisterDialog from "../register/RegisterDialog.vue";
+
+const $q = useQuasar();
+const register = () => {
+  $q.dialog({
+    component: RegisterDialog,
+  });
+};
+</script>
 
 <style scoped>
 .background {

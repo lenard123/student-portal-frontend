@@ -6,7 +6,7 @@ import { useAppStore } from "./app";
 export const useGradeLevel = (id) => {
   return defineStore(`grade-levels/${id}`, () => {
     const initialize = ref(false);
-    const level = ref({});
+    const level = ref({ fees: [] });
     const loading = ref(false);
 
     const addSubject = async (subject_id) => {
@@ -16,6 +16,10 @@ export const useGradeLevel = (id) => {
       level.value.subjects = data;
       return data;
     };
+
+    const totalFees = computed(() => {
+      return level.value.fees.reduce((acm, item) => acm + item.amount, 0);
+    });
 
     const addFee = async (payload) => {
       const { data } = await api.post(`/grade-levels/${id}/fees`, payload);
@@ -30,7 +34,7 @@ export const useGradeLevel = (id) => {
         level.value = data;
         initialize.value = true;
       } finally {
-        loading.value = true;
+        loading.value = false;
       }
     };
 
@@ -41,6 +45,7 @@ export const useGradeLevel = (id) => {
       level,
       loading,
       fetch,
+      totalFees,
     };
   })();
 };

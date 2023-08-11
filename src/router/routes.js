@@ -14,7 +14,6 @@ const routes = [
 
   {
     path: "/admin",
-    meta: { middlewares: ["auth", "admin"] },
     component: () => import("layouts/AdminLayout/AdminLayout.vue"),
     children: [
       {
@@ -83,6 +82,30 @@ const routes = [
         path: "school-year",
         name: "admin:school-year",
         component: () => import("pages/admin/school-year/SchoolYearPage.vue"),
+      },
+      {
+        path: "pre-enrollment",
+        name: "admin:pre-enrollment",
+        component: () =>
+          import("pages/admin/pre-enrollment/PreEnrollmentPage.vue"),
+      },
+      {
+        path: "pre-enrollment/:id",
+        name: "admin:pre-enrollment/info",
+        component: () =>
+          import("pages/admin/pre-enrollment/[id]/RegistrationInfoPage.vue"),
+      },
+    ],
+  },
+
+  {
+    path: "/student",
+    component: () => import("layouts/StudentLayout/StudentLayout.vue"),
+    children: [
+      {
+        path: "",
+        name: "student:home",
+        component: () => import("pages/student/home/HomePage.vue"),
       },
     ],
   },
