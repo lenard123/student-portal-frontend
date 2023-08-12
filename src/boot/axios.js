@@ -18,7 +18,7 @@ window.axios = api;
 
 export default boot(async ({ app, router, store }) => {
   api.interceptors.request.use((config) => {
-    config["headers"]["USER_ROLE"] = store.state.value.auth.user?.role;
+    config["headers"]["USER-ROLE"] = store.state.value.auth.user?.role;
     return config;
   });
   api.interceptors.response.use(ResponseMiddleware, ErrorHandler);
