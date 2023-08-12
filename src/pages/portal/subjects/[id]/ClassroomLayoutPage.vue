@@ -17,26 +17,26 @@
       <q-card class="tw-flex-shrink-0">
         <q-list class="tw-min-w-[270px]">
           <q-item-label header>Menu</q-item-label>
-          <q-item clickable>
-            <q-item-section side>
+          <q-item :to="{ name: 'portal:subjects/overview' }" clickable exact>
+            <q-item-section avatar>
               <q-icon name="visibility" />
             </q-item-section>
             <q-item-section>Overview</q-item-section>
           </q-item>
           <q-item clickable>
-            <q-item-section side>
+            <q-item-section avatar>
               <q-icon name="people" />
             </q-item-section>
             <q-item-section>Students</q-item-section>
           </q-item>
-          <q-item clickable>
-            <q-item-section side>
+          <q-item :to="{ name: 'portal:subjects/lessons' }" clickable>
+            <q-item-section avatar>
               <q-icon name="assignment" />
             </q-item-section>
             <q-item-section>Lessons</q-item-section>
           </q-item>
           <q-item clickable>
-            <q-item-section side>
+            <q-item-section avatar>
               <q-icon name="edit" />
             </q-item-section>
             <q-item-section>Assignments</q-item-section>

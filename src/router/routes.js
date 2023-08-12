@@ -142,6 +142,12 @@ const routes = [
             component: () =>
               import("pages/portal/subjects/[id]/OverviewPage.vue"),
           },
+          {
+            path: "lessons",
+            name: "portal:subjects/lessons",
+            component: () =>
+              import("pages/portal/subjects/[id]/LessonsPage.vue"),
+          },
         ],
       },
     ],

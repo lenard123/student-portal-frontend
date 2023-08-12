@@ -1,5 +1,5 @@
 <template>
-  <q-dialog ref="dialogRef">
+  <q-dialog ref="dialogRef" v-bind="instance?.dialogProps">
     <q-card class="tw-w-full">
       <q-form @submit="handleSubmit">
         <q-card-section class="tw-font-bold tw-text-xl">

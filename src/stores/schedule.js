@@ -6,6 +6,7 @@ export const useSchedule = (schedule_id) => {
   return defineStore(`schedules:${schedule_id}`, () => {
     const schedule = ref(null);
     const posts = ref([]);
+    const lessons = ref([]);
 
     const fetch = async () => {
       const { data } = await api.get(`/schedules/${schedule_id}`);
@@ -17,6 +18,29 @@ export const useSchedule = (schedule_id) => {
       posts.value = data;
     };
 
+    const fetchLessons = async () => {
+      const { data } = await api.get(`/schedules/${schedule_id}/lessons`);
+      lessons.value = data;
+    };
+
+    const createLesson = async ({ title, description, files }) => {
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("description", description);
+      files.forEach((file, i) => formData.append(`files`, file));
+
+      const { data } = await api.post(
+        `/schedules/${schedule_id}/lessons`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      lessons.value.splice(0, 0, data);
+    };
+
     const createPost = async (description) => {
       const { data } = await api.post(`/schedules/${schedule_id}/posts`, {
         description,
@@ -25,6 +49,9 @@ export const useSchedule = (schedule_id) => {
     };
 
     return {
+      lessons,
+      createLesson,
+      fetchLessons,
       createPost,
       schedule,
       fetch,
