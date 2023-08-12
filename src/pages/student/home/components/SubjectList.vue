@@ -34,7 +34,16 @@
               <span>Assignments</span>
             </div>
             <div class="tw-flex tw-justify-end">
-              <q-btn icon="folder" size="sm" unelevated label="View" />
+              <q-btn
+                :to="{
+                  name: 'student:schedules/info',
+                  params: { id: schedule.id },
+                }"
+                icon="folder"
+                size="sm"
+                unelevated
+                label="View"
+              />
             </div>
           </div>
         </q-card-section>

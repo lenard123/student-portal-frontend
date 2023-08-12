@@ -20,6 +20,22 @@
           </q-item-section>
           <q-item-section>Home</q-item-section>
         </q-item>
+        <q-item clickable>
+          <q-item-section avatar>
+            <q-icon name="forum" />
+          </q-item-section>
+          <q-item-section>Messages</q-item-section>
+        </q-item>
+        <q-item
+          :to="{ name: 'student:schedules' }"
+          clickable
+          v-if="authStore.user.current_registration != null"
+        >
+          <q-item-section avatar>
+            <q-icon name="event" />
+          </q-item-section>
+          <q-item-section>Calendar</q-item-section>
+        </q-item>
         <q-item clickable @click="logout">
           <q-item-section avatar>
             <q-icon name="logout" />

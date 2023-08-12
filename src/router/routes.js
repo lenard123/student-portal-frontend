@@ -107,6 +107,23 @@ const routes = [
         name: "student:home",
         component: () => import("pages/student/home/HomePage.vue"),
       },
+      {
+        path: "schedules",
+        name: "student:schedules",
+        component: () => import("pages/student/schedule/SchedulePage.vue"),
+      },
+      {
+        path: "schedules/:id",
+        component: () => import("layouts/SubjectLayout/SubjectLayout.vue"),
+        children: [
+          {
+            path: "",
+            name: "student:schedules/info",
+            component: () =>
+              import("pages/student/schedule/[id]/OverviewPage.vue"),
+          },
+        ],
+      },
     ],
   },
 
