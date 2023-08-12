@@ -1,10 +1,10 @@
 import { defineStore } from "pinia";
 import { api } from "src/boot/axios";
 import { computed, ref } from "vue";
-import { useAuthStore } from "./auth";
+import { ROLE_ADMIN, useAuthStore } from "./auth";
 
 export function getThreadInfo(user, thread) {
-  if (user.role == "admin") {
+  if (user.role == ROLE_ADMIN) {
     return {
       avatar: "https://avatars.dicebear.com/api/initials/admin+example.svg",
       name: thread.members[0].firstname + " " + thread.members[0].lastname,

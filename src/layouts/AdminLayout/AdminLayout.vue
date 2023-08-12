@@ -103,37 +103,23 @@
       </main>
     </div>
   </div>
-  <app-confirm-dialog
-    v-if="appStore.confirmDialog"
-    :model-value="true"
-    v-bind="appStore.confirmDialog"
-    :submitButton="{
-      label: 'Submit',
-      loading: appStore.confirmDialog.loading,
-    }"
-    @submit="appStore.confirmDialog.submit"
-    @cancel="appStore.closeDialog"
-  />
 </template>
 
 <script setup>
 import { LoadingBar } from "quasar";
-import AppConfirmDialog from "src/components/AppConfirmDialog.vue";
-import { useAppStore } from "src/stores/app";
-import { useAuthStore } from "src/stores/auth";
+import { useConfirmDialog } from "src/composables/useDialog";
+import { ROLE_ADMIN, useAuthStore } from "src/stores/auth";
 import { Notify } from "src/utils";
 import { useRouter } from "vue-router";
 
 const store = useAuthStore();
-const appStore = useAppStore();
 const router = useRouter();
-
+const { dialog } = useConfirmDialog();
 const handleLogout = () => {
-  appStore.showDialog({
-    title: "Confirm",
+  dialog({
     message: "Are you sure to logout?",
     onSubmit: async () => {
-      await store.logout();
+      await store.logout(ROLE_ADMIN);
       router.push({ name: "login" });
       Notify.success("Logout successfully");
     },
@@ -147,7 +133,8 @@ export default {
     const store = useAuthStore();
     LoadingBar.start();
     try {
-      if (store.user?.role != "admin") await store.fetchCurrentUser();
+      if (store.user?.role != ROLE_ADMIN)
+        await store.fetchCurrentUser(ROLE_ADMIN);
       next();
     } catch (err) {
       next({ name: "login" });

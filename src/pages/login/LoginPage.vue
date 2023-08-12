@@ -86,7 +86,12 @@
 
 <script setup>
 import { Loading } from "quasar";
-import { ROLE_ADMIN, ROLE_STUDENT, useAuthStore } from "src/stores/auth";
+import {
+  ROLE_ADMIN,
+  ROLE_FACULTY,
+  ROLE_STUDENT,
+  useAuthStore,
+} from "src/stores/auth";
 import { reactive, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
@@ -109,9 +114,8 @@ const handleSubmit = () => {
         case ROLE_ADMIN:
           router.push({ name: "admin:announcements" });
           break;
-        case ROLE_STUDENT:
-          router.push({ name: "student:home" });
-          break;
+        default:
+          router.push({ name: "portal:home", params: { role: user.role } });
       }
     })
     .finally(() => {

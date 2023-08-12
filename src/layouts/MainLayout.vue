@@ -1,116 +1,38 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
+  <div class="tw-bg-slate-50 tw-flex">
+    <aside class="tw-max-w-[300px] tw-h-screen tw-bg-white tw-pt-8 tw-flex-shrink-0 tw-w-full tw-shadow">
+      <div class="tw-flex tw-flex-col tw-items-center tw-px-4">
+        <q-avatar size="8rem">
+          <img :src="user.avatar" />
+        </q-avatar>
+        <div class="tw-text-xl tw-mt-2">{{ user.fullname }}</div>
+        <div class="tw-text-slate-500 tw-capitalize">{{ user.role }}</div>
 
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
-      </q-toolbar>
-    </q-header>
-
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-    >
-      <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
-        </q-item-label>
-
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
-    </q-drawer>
-
-    <q-page-container>
-      <router-view />
-    </q-page-container>
-  </q-layout>
+        <q-btn class="tw-w-full tw-mt-3" label="View Profile" color="primary" />
+      </div>
+      <slot />
+    </aside>
+    <div class="tw-flex-grow tw-flex tw-flex-col">
+      <header class="tw-bg-white tw-h-16 tw-shadow tw-flex tw-items-center tw-px-8">
+        <router-link :to="{ name: 'student:home' }"
+          class="tw-flex tw-gap-4 tw-items-center tw-no-underline tw-text-slate-600">
+          <q-avatar>
+            <img src="/logo.png" />
+          </q-avatar>
+          <div class="tw-text-base tw-font-bold">
+            The Lord's Wisdom Academy<br />
+            Of Caloocan
+          </div>
+        </router-link>
+      </header>
+      <main>
+        <router-view />
+      </main>
+    </div>
+  </div>
 </template>
 
-<script>
-import { defineComponent, ref } from 'vue'
-import EssentialLink from 'components/EssentialLink.vue'
-
-const linksList = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-]
-
-export default defineComponent({
-  name: 'MainLayout',
-
-  components: {
-    EssentialLink
-  },
-
-  setup () {
-    const leftDrawerOpen = ref(false)
-
-    return {
-      essentialLinks: linksList,
-      leftDrawerOpen,
-      toggleLeftDrawer () {
-        leftDrawerOpen.value = !leftDrawerOpen.value
-      }
-    }
-  }
-})
+<script setup>
+defineProps(['user'])
 </script>
+

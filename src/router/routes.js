@@ -99,6 +99,55 @@ const routes = [
   },
 
   {
+    path: "/faculty",
+    component: () => import("layouts/FacultyLayout/FacultyLayout.vue"),
+    children: [
+      {
+        path: "",
+        name: "faculty:home",
+        component: () => import("pages/faculty/HomePage/HomePage.vue"),
+      },
+      {
+        path: "schedules/:id",
+        component: () => import("layouts/SubjectLayout/SubjectLayout.vue"),
+        children: [
+          {
+            path: "",
+            name: "faculty:schedules/info",
+            component: () =>
+              import("pages/faculty/schedules/[id]/OverviewPage.vue"),
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    path: "/portal/:role",
+    component: () => import("layouts/PortalLayout/PortalLayout.vue"),
+    children: [
+      {
+        path: "",
+        name: "portal:home",
+        component: () => import("pages/portal/home/HomePage.vue"),
+      },
+      {
+        path: "subjects/:id",
+        component: () =>
+          import("pages/portal/subjects/[id]/ClassroomLayoutPage.vue"),
+        children: [
+          {
+            path: "",
+            name: "portal:subjects/overview",
+            component: () =>
+              import("pages/portal/subjects/[id]/OverviewPage.vue"),
+          },
+        ],
+      },
+    ],
+  },
+
+  {
     path: "/student",
     component: () => import("layouts/StudentLayout/StudentLayout.vue"),
     children: [

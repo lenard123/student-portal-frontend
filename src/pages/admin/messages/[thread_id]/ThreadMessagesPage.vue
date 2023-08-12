@@ -32,7 +32,7 @@
 
 <script setup>
 import ThreadChatItem from "src/layouts/MessageLayout/components/ThreadChatItem.vue";
-import { useAuthStore } from "src/stores/auth";
+import { ROLE_ADMIN, useAuthStore } from "src/stores/auth";
 import { useMessageStore } from "src/stores/message";
 import { onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
@@ -42,7 +42,7 @@ const authStore = useAuthStore();
 const route = useRoute();
 
 const isSent = (message) => {
-  if (authStore.user.role == "admin") {
+  if (authStore.user.role == ROLE_ADMIN) {
     return message.user_id !== store.thread.members[0].id;
   }
 };

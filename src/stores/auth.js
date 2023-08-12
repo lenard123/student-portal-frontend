@@ -16,13 +16,7 @@ export const useAuthStore = defineStore("auth", () => {
   };
 
   const logout = async (role) => {
-    switch (role) {
-      case "student":
-        await api.post("/student-logout");
-        break;
-      default:
-        await api.post("/logout");
-    }
+    await api.post("logout", { role });
     user.value = undefined;
   };
 
@@ -36,21 +30,9 @@ export const useAuthStore = defineStore("auth", () => {
   };
 
   const fetchCurrentUser = async (role) => {
-    switch (role) {
-      case "student": {
-        const { data } = await api.get("/student");
-        user.value = data;
-        break;
-      }
-
-      default: {
-        const { data } = await api.get("/user");
-        user.value = data;
-        break;
-      }
-    }
-
-    return user.value;
+    const { data } = await api.get(`/user/${role}`);
+    user.value = data;
+    return data;
   };
 
   return {

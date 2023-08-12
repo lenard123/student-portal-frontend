@@ -1,7 +1,7 @@
 <template>
   <MainLayout :user="user">
     <q-list class="tw-mt-8">
-      <q-item :to="{ name: 'student:home' }" exact clickable>
+      <q-item :to="{ name: 'faculty:home' }" exact clickable>
         <q-item-section avatar>
           <q-icon name="home" />
         </q-item-section>
@@ -13,7 +13,7 @@
         </q-item-section>
         <q-item-section>Messages</q-item-section>
       </q-item>
-      <q-item :to="{ name: 'student:schedules' }" clickable v-if="user.current_registration != null">
+      <q-item :to="{ name: 'student:schedules' }">
         <q-item-section avatar>
           <q-icon name="event" />
         </q-item-section>
@@ -32,7 +32,7 @@
 <script setup>
 import { LoadingBar } from "quasar";
 import { useConfirmDialog } from "src/composables/useDialog";
-import { ROLE_STUDENT, useAuthStore } from "src/stores/auth";
+import { ROLE_FACULTY, useAuthStore } from "src/stores/auth";
 import { computed } from "vue";
 import { useRouter } from "vue-router";
 import MainLayout from "../MainLayout.vue";
@@ -45,7 +45,7 @@ const logout = () => {
   dialog({
     message: "Are you sure to logout?",
     async onSubmit() {
-      await authStore.logout(ROLE_STUDENT);
+      await authStore.logout(ROLE_FACULTY);
       router.push({ name: "login" });
     },
   });
@@ -58,8 +58,8 @@ export default {
     const store = useAuthStore();
     LoadingBar.start();
     try {
-      if (store.user?.role != ROLE_STUDENT)
-        await store.fetchCurrentUser(ROLE_STUDENT);
+      if (store.user?.role != ROLE_FACULTY)
+        await store.fetchCurrentUser(ROLE_FACULTY);
       next();
     } catch (error) {
       next({ name: "login" });
