@@ -29,7 +29,15 @@
             </q-item-label>
           </q-item-section>
           <q-item-section side top>
-            <q-btn flat label="View" color="primary" />
+            <q-btn
+              :to="{
+                name: 'portal:subjects/lessons/view',
+                params: { lesson_id: lesson.id },
+              }"
+              flat
+              label="View"
+              color="primary"
+            />
           </q-item-section>
         </q-item>
       </q-list>

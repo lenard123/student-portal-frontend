@@ -144,9 +144,22 @@ const routes = [
           },
           {
             path: "lessons",
-            name: "portal:subjects/lessons",
-            component: () =>
-              import("pages/portal/subjects/[id]/LessonsPage.vue"),
+            children: [
+              {
+                path: "",
+                name: "portal:subjects/lessons",
+                component: () =>
+                  import("pages/portal/subjects/[id]/lessons/LessonsPage.vue"),
+              },
+              {
+                path: ":lesson_id",
+                name: "portal:subjects/lessons/view",
+                component: () =>
+                  import(
+                    "pages/portal/subjects/[id]/lessons/[lesson_id]/ViewLessonPage.vue"
+                  ),
+              },
+            ],
           },
         ],
       },

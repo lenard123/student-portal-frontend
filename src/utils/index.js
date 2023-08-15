@@ -61,3 +61,12 @@ export const getBackgroundColor = (seed) => {
   let index = seed % colors.length;
   return colors[index];
 };
+
+export const getIcon = (mimetype) => {
+  switch (mimetype) {
+    case "image/png":
+      return "image";
+    default:
+      return "description";
+  }
+};

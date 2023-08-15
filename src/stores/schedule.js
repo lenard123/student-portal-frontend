@@ -27,7 +27,7 @@ export const useSchedule = (schedule_id) => {
       const formData = new FormData();
       formData.append("title", title);
       formData.append("description", description);
-      files.forEach((file, i) => formData.append(`files`, file));
+      files.forEach((file, i) => formData.append(`files[${i}]`, file));
 
       const { data } = await api.post(
         `/schedules/${schedule_id}/lessons`,
