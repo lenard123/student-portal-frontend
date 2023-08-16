@@ -42,6 +42,7 @@
             label="Start Enrollment"
             unelevated
             color="green"
+            @click="startEnrollment(row.id)"
           />
         </q-td>
       </template>
@@ -55,6 +56,7 @@ import { useAcademicYearStore } from "src/stores/academic-year";
 import { useAppStore } from "src/stores/app";
 import { computed, onMounted, ref } from "vue";
 import AddSchoolYear from "./components/AddSchoolYear.vue";
+import { useConfirmDialog } from "src/composables/useDialog";
 
 const appStore = useAppStore();
 const department = ref(appStore.departments[0].id);
@@ -66,9 +68,19 @@ const columns = [
   { name: "action", label: "Action" },
 ];
 const $q = useQuasar();
+const { dialog } = useConfirmDialog();
 const addSchoolYear = () => {
   $q.dialog({
     component: AddSchoolYear,
+  });
+};
+
+const startEnrollment = (academic_year_id) => {
+  dialog({
+    message: "Are you sure to start enrollment in this school year?",
+    async onSubmit() {
+      await store.startEnrollment(academic_year_id);
+    },
   });
 };
 

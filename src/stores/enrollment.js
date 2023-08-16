@@ -36,9 +36,16 @@ export const useEnrollee = (enrollee_id) => {
 export const useEnrollmentStore = defineStore("enrollment", function () {
   const enrollees = ref({});
   const loading = ref(false);
+  const registrations = ref([]);
 
   const enroll = async (grade_level_id) => {
     const { data } = await api.post("/enrollment", { grade_level_id });
+    return data;
+  };
+
+  const fetchRegistrations = async () => {
+    const { data } = await api.get("/enrollment");
+    registrations.value = data;
     return data;
   };
 
@@ -64,5 +71,7 @@ export const useEnrollmentStore = defineStore("enrollment", function () {
     fetchEnrollees,
     loading,
     getEnrollees,
+    registrations,
+    fetchRegistrations,
   };
 });

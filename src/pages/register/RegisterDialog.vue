@@ -106,7 +106,11 @@
                 label="Email"
               />
 
-              <q-input class="tw-mt-4" outlined type="number">
+              <q-input
+                class="tw-mt-4 tw-uppercase"
+                outlined
+                v-model="data.code"
+              >
                 <template v-slot:prepend>
                   <q-icon name="lock" />
                 </template>
@@ -148,6 +152,7 @@
 import { Loading, useDialogPluginComponent } from "quasar";
 import { useAppStore } from "src/stores/app";
 import { useOtp, useStudentsStore } from "src/stores/student";
+import { Notify } from "src/utils";
 import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 
@@ -168,6 +173,7 @@ const data = reactive({
   department: "",
   password: "",
   password_confirmation: "",
+  code: "",
 });
 
 const handleSubmit = () => {
@@ -192,9 +198,10 @@ const handleSubmit = () => {
     case 3: {
       Loading.show();
       studentStore
-        .register({ ...data })
+        .register({ ...data, code: data.code.toUpperCase() })
         .then(() => {
           onDialogOK();
+          Notify.success("Account registered successfully");
           router.push({ name: "login", query: { email: data.email } });
         })
         .finally(() => {

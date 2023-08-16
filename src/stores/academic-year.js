@@ -31,6 +31,16 @@ export const useAcademicYearStore = defineStore("academic-year", () => {
     return data;
   };
 
+  const startEnrollment = async (academic_year_id) => {
+    const { data } = await api.patch(
+      `/academic-years/${academic_year_id}/start-enrollment`
+    );
+    academicYears.value = academicYears.value.map((ay) =>
+      ay.id == academic_year_id ? data : ay
+    );
+    return data;
+  };
+
   const departmentAcadamicYears = computed(() => {
     return appStore.departments.reduce((acm, department) => {
       return {
@@ -49,6 +59,7 @@ export const useAcademicYearStore = defineStore("academic-year", () => {
   });
 
   return {
+    startEnrollment,
     activeDepartmentOptions,
     activeAcademicYear,
     fetchActiveAcademicYear,
