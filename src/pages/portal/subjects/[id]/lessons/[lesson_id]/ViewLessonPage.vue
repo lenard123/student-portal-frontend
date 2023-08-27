@@ -28,13 +28,6 @@
           </q-item-section>
         </q-item>
       </q-list>
-      <!-- <q-separator />
-      <q-card-section>
-        <div class="tw-text-xl tw-font-bold">Comments</div>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum est,
-        quaerat, provident soluta distinctio velit aperiam laudantium sed vitae
-        totam id iure voluptatibus animi ipsa quasi quos tempora corporis amet.
-      </q-card-section> -->
     </q-card>
   </div>
 </template>

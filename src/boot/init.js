@@ -8,7 +8,7 @@ import { useAuthStore } from "src/stores/auth";
 // "async" is optional;
 // more info on params: https://v2.quasar.dev/quasar-cli/boot-files
 export default boot(async ({ app }) => {
-  app.use(Plugin);
+  // app.use(Plugin);
 
   const { fetchCurrentUser, initializeCSRFCookie } = useAuthStore();
   const { fetchActiveAcademicYear } = useAcademicYearStore();

@@ -67,7 +67,7 @@
 import { LoadingBar } from "quasar";
 import { useConfirmDialog } from "src/composables/useDialog";
 import { useAuthStore } from "src/stores/auth";
-import { computed } from "vue";
+import { computed, provide } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 export default {
@@ -95,6 +95,9 @@ const user = computed(() => store.user);
 const route = useRoute();
 const router = useRouter();
 const { dialog } = useConfirmDialog();
+
+provide("user", user);
+
 const logout = () => {
   dialog({
     message: "Are you sure to logout?",

@@ -23,7 +23,7 @@
             </q-item-section>
             <q-item-section>Overview</q-item-section>
           </q-item>
-          <q-item clickable>
+          <q-item clickable :to="{ name: 'portal:subjects/students' }">
             <q-item-section avatar>
               <q-icon name="people" />
             </q-item-section>
@@ -35,7 +35,7 @@
             </q-item-section>
             <q-item-section>Lessons</q-item-section>
           </q-item>
-          <q-item clickable>
+          <q-item :to="{ name: 'portal:subjects/assignments' }" clickable>
             <q-item-section avatar>
               <q-icon name="edit" />
             </q-item-section>
@@ -52,7 +52,7 @@
 import { LoadingBar } from "quasar";
 import { useSchedule } from "src/stores/schedule";
 import { getBackgroundColor } from "src/utils";
-import { computed } from "vue";
+import { computed, provide } from "vue";
 import { useRoute } from "vue-router";
 
 export default {
@@ -78,4 +78,6 @@ export default {
 const route = useRoute();
 const store = useSchedule(route.params.id);
 const schedule = computed(() => store.schedule);
+
+provide("schedule", schedule);
 </script>

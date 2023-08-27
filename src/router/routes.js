@@ -143,6 +143,12 @@ const routes = [
               import("pages/portal/subjects/[id]/OverviewPage.vue"),
           },
           {
+            path: "students",
+            name: "portal:subjects/students",
+            component: () =>
+              import("pages/portal/subjects/[id]/StudentsPage.vue"),
+          },
+          {
             path: "lessons",
             children: [
               {
@@ -157,6 +163,27 @@ const routes = [
                 component: () =>
                   import(
                     "pages/portal/subjects/[id]/lessons/[lesson_id]/ViewLessonPage.vue"
+                  ),
+              },
+            ],
+          },
+          {
+            path: "assignments",
+            children: [
+              {
+                path: "",
+                name: "portal:subjects/assignments",
+                component: () =>
+                  import(
+                    "pages/portal/subjects/[id]/assignments/AssignmentsPage.vue"
+                  ),
+              },
+              {
+                path: ":assignment_id",
+                name: "portal:subjects/assignments/view",
+                component: () =>
+                  import(
+                    "pages/portal/subjects/[id]/assignments/[assignment_id]/ViewAssignmentPage.vue"
                   ),
               },
             ],

@@ -2,6 +2,7 @@ import axios from "axios";
 import { boot } from "quasar/wrappers";
 import ResponseMiddleware from "./middlewares/ResponseMiddleware";
 import ErrorHandler from "./middlewares/ErrorHandler";
+import moment from "moment";
 
 // Be careful when using SSR for cross-request state pollution
 // due to creating a Singleton instance here;
@@ -15,7 +16,7 @@ const api = axios.create({
 });
 
 window.axios = api;
-
+window.moment = moment;
 export default boot(async ({ app, router, store }) => {
   api.interceptors.request.use((config) => {
     config["headers"]["USER-ROLE"] = store.state.value.auth.user?.role;
