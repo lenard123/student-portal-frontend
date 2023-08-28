@@ -59,6 +59,11 @@ const enrollees = computed(() =>
   store.getEnrollees(academicYearStore.activeAcademicYear[department.value]?.id)
 );
 const columns = [
+  {
+    name: "transaction_id",
+    label: "Transaction ID",
+    field: (row) => row.student.current_registration.transaction_id,
+  },
   { name: "name", label: "Name", field: (row) => row.student.fullname },
   {
     name: "grade_level",
