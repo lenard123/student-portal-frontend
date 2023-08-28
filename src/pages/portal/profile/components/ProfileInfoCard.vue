@@ -22,19 +22,19 @@
         <q-item>
           <q-item-section>
             <q-item-label>Department</q-item-label>
-            <q-item-label caption>Elementary</q-item-label>
+            <q-item-label caption>{{ capitalizedDepartment }}</q-item-label>
           </q-item-section>
         </q-item>
         <q-item>
-          <q-item-section>
-            <q-item-label>Grade Level</q-item-label>
-            <q-item-label caption>Grade 7</q-item-label>
+          <q-item-section v-if="user.role == 'student'">
+            <q-item-label>Student Number</q-item-label>
+            <q-item-label caption>{{ user.info.student_id }}</q-item-label>
           </q-item-section>
         </q-item>
         <q-item>
-          <q-item-section>
-            <q-item-label>Section</q-item-label>
-            <q-item-label caption>Section A</q-item-label>
+          <q-item-section v-if="user.role == 'student'">
+            <q-item-label>Status</q-item-label>
+            <q-item-label caption>{{ capitalizedStatus }}</q-item-label>
           </q-item-section>
         </q-item>
       </q-list>
@@ -49,7 +49,17 @@ import { Notify } from "src/utils";
 
 export default {
   inject: ["user", "refreshUser"],
+  computed: {
+    capitalizedDepartment() {
+      const department = this.user.department;
+      return department.charAt(0).toUpperCase() + department.slice(1);
+    },
 
+    capitalizedStatus() {
+      const status = this.user.current_registration.status;
+      return status.charAt(0).toUpperCase() + status.slice(1);
+    },
+  },
   methods: {
     updateAvatar(e) {
       const [file] = e.target.files;
