@@ -8,6 +8,11 @@
       </q-card-section>
       <q-separator />
       <q-card-section class="tw-grid tw-grid-cols-4 tw-gap-4 tw-text-gray-600">
+        <div>Transaction ID:</div>
+        <div class="tw-col-span-3">
+          {{ enrollee.transaction_id }}
+        </div>
+
         <div>School Year:</div>
         <div class="tw-col-span-3">{{ enrollee.academic_year.name }}</div>
 
