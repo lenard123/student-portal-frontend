@@ -25,14 +25,13 @@
             <q-item-label caption>{{ capitalizedDepartment }}</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item>
-          <q-item-section v-if="user.role == 'student'">
+        <q-item v-if="user.role == 'student'">
+          <q-item-section>
             <q-item-label>Student Number</q-item-label>
             <q-item-label caption>{{ user.info.student_id }}</q-item-label>
           </q-item-section>
-        </q-item>
-        <q-item>
-          <q-item-section v-if="user.role == 'student'">
+
+          <q-item-section>
             <q-item-label>Status</q-item-label>
             <q-item-label caption>{{ capitalizedStatus }}</q-item-label>
           </q-item-section>
@@ -51,13 +50,15 @@ export default {
   inject: ["user", "refreshUser"],
   computed: {
     capitalizedDepartment() {
-      const department = this.user.department;
-      return department.charAt(0).toUpperCase() + department.slice(1);
+      const department = this.user?.department;
+      return department
+        ? department.charAt(0).toUpperCase() + department.slice(1)
+        : "";
     },
 
     capitalizedStatus() {
-      const status = this.user.current_registration.status;
-      return status.charAt(0).toUpperCase() + status.slice(1);
+      const status = this.user?.current_registration?.status;
+      return status ? status.charAt(0).toUpperCase() + status.slice(1) : "";
     },
   },
   methods: {

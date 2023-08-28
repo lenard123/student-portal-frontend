@@ -36,14 +36,15 @@ export default {
   },
   methods: {
     updateOtherInfo(e) {
-      const formdata = new FormData();
-      formdata.append("_method", "PUT");
       Loading.show();
       api
         .put(`/student/other-info`, this.userModel)
         .then(() => {
           this.refreshUser();
           Notify.success("Personal Info updated successfully");
+        })
+        .catch((error) => {
+          console.error(error);
         })
         .finally(() => {
           Loading.hide();
