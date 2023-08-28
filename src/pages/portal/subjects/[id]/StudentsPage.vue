@@ -19,6 +19,7 @@
             </q-item-section>
             <q-item-section side>
               <q-btn
+                v-if="student.id != user.id"
                 :to="{
                   name: 'portal:messages',
                   query: { user_id: student.id },
@@ -40,6 +41,7 @@
 import { computed, inject } from "vue";
 
 const schedule = inject("schedule");
+const user = inject("user");
 const students = computed(() => schedule.value.section.students);
 console.log({ schedule });
 </script>

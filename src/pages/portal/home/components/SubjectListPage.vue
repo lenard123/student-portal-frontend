@@ -1,7 +1,7 @@
 <template>
   <div class="tw-p-8">
     <div class="tw-text-2xl tw-font-bold">Subject List</div>
-    <div class="tw-flex tw-gap-4 tw-mt-8">
+    <div class="tw-flex tw-gap-4 tw-mt-8 tw-flex-wrap">
       <SubjectCard
         v-for="schedule in schedules"
         :key="schedule.id"

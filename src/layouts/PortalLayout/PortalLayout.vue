@@ -30,12 +30,12 @@
           </q-item-section>
           <q-item-section>Messages</q-item-section>
         </q-item>
-        <q-item :to="{ name: 'student:schedules' }">
+        <!-- <q-item :to="{ name: 'student:schedules' }">
           <q-item-section avatar>
             <q-icon name="event" />
           </q-item-section>
           <q-item-section>Calendar</q-item-section>
-        </q-item>
+        </q-item> -->
         <q-item clickable @click="logout">
           <q-item-section avatar>
             <q-icon name="logout" />
