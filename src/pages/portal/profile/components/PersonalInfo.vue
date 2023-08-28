@@ -5,19 +5,44 @@
       <q-input filled v-model="userData.firstname" label="Firstname" />
       <q-input filled v-model="userData.middlename" label="Middlename" />
       <q-input filled v-model="userData.lastname" label="Lastname" />
-      <q-btn type="submit" label="Update" color="primary" class="tw-self-end" />
+      <q-btn
+        label="Update"
+        color="primary"
+        @click="updateInfo"
+        class="tw-self-end"
+      />
     </q-form>
   </q-card-section>
 </template>
 
 <script>
+import { Loading } from "quasar";
+import { api } from "src/boot/axios";
+import { Notify } from "src/utils";
+
 export default {
-  inject: ["user"],
+  inject: ["user", "refreshUser"],
 
   data() {
     return {
       userData: JSON.parse(JSON.stringify(this.user)),
     };
+  },
+  methods: {
+    updateInfo(e) {
+      const formdata = new FormData();
+      formdata.append("_method", "PUT");
+      Loading.show();
+      api
+        .put(`/student/info`, this.userData)
+        .then(() => {
+          this.refreshUser();
+          Notify.success("Personal Info updated successfully");
+        })
+        .finally(() => {
+          Loading.hide();
+        });
+    },
   },
 };
 </script>
