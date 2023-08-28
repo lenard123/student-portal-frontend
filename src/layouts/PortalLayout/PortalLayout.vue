@@ -1,7 +1,7 @@
 <template>
   <div class="tw-bg-slate-50 tw-flex" v-if="!!store.user">
     <aside
-      class="tw-max-w-[300px] tw-h-screen tw-bg-white tw-pt-8 tw-flex-shrink-0 tw-w-full tw-shadow"
+      class="tw-z-10 tw-max-w-[300px] tw-h-screen tw-bg-white tw-pt-8 tw-flex-shrink-0 tw-w-full tw-shadow"
     >
       <div class="tw-flex tw-flex-col tw-items-center tw-px-4">
         <q-avatar size="8rem">
@@ -10,7 +10,12 @@
         <div class="tw-text-xl tw-mt-2">{{ user.fullname }}</div>
         <div class="tw-text-slate-500 tw-capitalize">{{ user.role }}</div>
 
-        <q-btn class="tw-w-full tw-mt-3" label="View Profile" color="primary" />
+        <q-btn
+          :to="{ name: 'portal:profile' }"
+          class="tw-w-full tw-mt-3"
+          label="View Profile"
+          color="primary"
+        />
       </div>
       <q-list class="tw-mt-8">
         <q-item :to="{ name: 'portal:home' }" exact clickable>
@@ -19,7 +24,7 @@
           </q-item-section>
           <q-item-section>Home</q-item-section>
         </q-item>
-        <q-item clickable>
+        <q-item clickable :to="{ name: 'portal:messages' }">
           <q-item-section avatar>
             <q-icon name="forum" />
           </q-item-section>
@@ -41,7 +46,7 @@
     </aside>
     <div class="tw-flex-grow tw-flex tw-flex-col">
       <header
-        class="tw-bg-white tw-h-16 tw-shadow tw-flex tw-items-center tw-px-8"
+        class="tw-z-10 tw-bg-white tw-h-16 tw-shadow tw-flex tw-items-center tw-px-8"
       >
         <router-link
           :to="{ name: 'student:home' }"
@@ -56,7 +61,7 @@
           </div>
         </router-link>
       </header>
-      <main>
+      <main class="tw-flex tw-flex-col tw-h-full">
         <router-view />
       </main>
     </div>
@@ -97,6 +102,7 @@ const router = useRouter();
 const { dialog } = useConfirmDialog();
 
 provide("user", user);
+provide("refreshUser", store.refetchCurrentUser);
 
 const logout = () => {
   dialog({

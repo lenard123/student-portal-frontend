@@ -17,6 +17,18 @@
               <q-item-label>{{ student.fullname }}</q-item-label>
               <q-item-label caption>{{ student.email }}</q-item-label>
             </q-item-section>
+            <q-item-section side>
+              <q-btn
+                :to="{
+                  name: 'portal:messages',
+                  query: { user_id: student.id },
+                }"
+                flat
+                dense
+                round
+                icon="message"
+              />
+            </q-item-section>
           </q-item>
         </q-list>
       </q-card-section>

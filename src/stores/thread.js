@@ -11,6 +11,15 @@ export function getThreadInfo(user, thread) {
     };
   }
 
+  for (let i = 0; i < thread.members.length; i++) {
+    if (thread.members[i].id != user.id) {
+      return {
+        avatar: thread.members[i].avatar,
+        name: thread.members[i].fullname,
+      };
+    }
+  }
+
   return {};
 }
 

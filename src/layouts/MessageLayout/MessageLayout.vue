@@ -1,5 +1,5 @@
 <template>
-  <div class="tw-flex tw-flex-grow tw-min-h-0">
+  <div class="tw-flex tw-flex-grow tw-min-h-0 tw-h-full">
     <div class="tw-w-[350px] tw-bg-white tw-flex-shrink-0 tw-border-r">
       <div class="tw-p-4 tw-h-16">
         <div class="tw-text-3xl tw-font-bold">Messages</div>

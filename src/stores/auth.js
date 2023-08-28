@@ -35,12 +35,17 @@ export const useAuthStore = defineStore("auth", () => {
     return data;
   };
 
+  const refetchCurrentUser = async () => {
+    return fetchCurrentUser(user.value.role);
+  };
+
   return {
     user,
     logout,
     fullname,
     login,
     fetchCurrentUser,
+    refetchCurrentUser,
     initializeCSRFCookie,
   };
 });

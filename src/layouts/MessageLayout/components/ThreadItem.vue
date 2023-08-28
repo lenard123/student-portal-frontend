@@ -1,7 +1,9 @@
 <template>
   <q-item :to="link" clickable v-if="messages_count > 0">
     <q-item-section avatar>
-      <q-avatar color="primary" text-color="white">LM</q-avatar>
+      <q-avatar color="primary" text-color="white">
+        <img :src="avatar" />
+      </q-avatar>
     </q-item-section>
     <q-item-section>
       <q-item-label>{{ name }}</q-item-label>
@@ -14,7 +16,7 @@
 
 <script setup>
 import moment from "moment";
-import { useAuthStore } from "src/stores/auth";
+import { ROLE_ADMIN, useAuthStore } from "src/stores/auth";
 import { computed } from "vue";
 
 const props = defineProps([
@@ -29,8 +31,16 @@ const props = defineProps([
 
 const store = useAuthStore();
 
-const link = computed(() => ({
-  name: `${store.user.role}:messages`,
-  params: { thread_id: props.id },
-}));
+const link = computed(() => {
+  if (store.user.role == ROLE_ADMIN)
+    return {
+      name: `admin:messages`,
+      params: { thread_id: props.id },
+    };
+
+  return {
+    name: `portal:messages/view`,
+    params: { role: store.user.role, thread_id: props.id },
+  };
+});
 </script>

@@ -62,10 +62,12 @@
                 required
               >
                 <template v-slot:selected-item>
-                  <span>{{
-                    appStore.departments.find((d) => d.id == data.department)
-                      ?.value
-                  }}</span>
+                  <span>
+                    {{
+                      appStore.departments.find((d) => d.id == data.department)
+                        ?.value
+                    }}
+                  </span>
                 </template>
               </q-select>
               <div class="tw-grid tw-grid-cols-2 tw-gap-3">
@@ -161,7 +163,7 @@ const { dialogRef, onDialogOK, onDialogCancel } = useDialogPluginComponent();
 const { loading: sending, throttle, sendOtp, resend } = useOtp();
 const studentStore = useStudentsStore();
 const router = useRouter();
-const step = ref(2);
+const step = ref(1);
 const stepper = ref(null);
 const appStore = useAppStore();
 const data = reactive({

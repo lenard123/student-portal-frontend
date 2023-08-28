@@ -81,6 +81,6 @@ const newAssignment = () => {
 
 onMounted(() => {
   store.fetchAssignments();
-  store.fetchSubmittedAssignments();
+  if (authStore.user.role == ROLE_STUDENT) store.fetchSubmittedAssignments();
 });
 </script>

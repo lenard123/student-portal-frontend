@@ -132,6 +132,31 @@ const routes = [
         component: () => import("pages/portal/home/HomePage.vue"),
       },
       {
+        path: "profile",
+        name: "portal:profile",
+        component: () => import("pages/portal/profile/ProfilePage.vue"),
+      },
+      {
+        path: "messages",
+        component: () => import("layouts/MessageLayout/MessageLayout.vue"),
+        children: [
+          {
+            path: "",
+            name: "portal:messages",
+            component: () =>
+              import("pages/portal/messages/MessagesIndexPage.vue"),
+          },
+          {
+            path: ":thread_id",
+            name: "portal:messages/view",
+            component: () =>
+              import(
+                "pages/portal/messages/[thread_id]/ThreadMessagesPage.vue"
+              ),
+          },
+        ],
+      },
+      {
         path: "subjects/:id",
         component: () =>
           import("pages/portal/subjects/[id]/ClassroomLayoutPage.vue"),

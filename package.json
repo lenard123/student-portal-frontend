@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "Student Portal",
   "productName": "The Lord's Wisdom Academy Of Caloocan",
-  "author": "John Lenard Mangay-ayam <mangayayam.j@decodetech.ph>",
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.vue ./",
