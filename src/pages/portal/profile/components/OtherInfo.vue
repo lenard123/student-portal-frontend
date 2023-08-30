@@ -13,17 +13,43 @@
       <q-input filled v-model="userModel.religion" label="Religion" />
       <q-input filled v-model="userModel.gender" label="Gender" />
       <q-input filled v-model="userModel.nationality" label="Nationality" />
-      <q-btn type="submit" label="Update" color="primary" class="tw-self-end" />
+      <q-btn
+        label="Update"
+        color="primary"
+        @click="updateOtherInfo"
+        class="tw-self-end"
+      />
     </q-form>
   </q-card-section>
 </template>
 <script>
+import { Loading } from "quasar";
+import { api } from "src/boot/axios";
+import { Notify } from "src/utils";
+
 export default {
-  inject: ["user"],
+  inject: ["user", "refreshUser"],
   data() {
     return {
-      userModel: JSON.parse(JSON.stringify(this.user)),
+      userModel: JSON.parse(JSON.stringify(this.user.info)),
     };
+  },
+  methods: {
+    updateOtherInfo(e) {
+      Loading.show();
+      api
+        .put(`/student/other-info`, this.userModel)
+        .then(() => {
+          this.refreshUser();
+          Notify.success("Personal Info updated successfully");
+        })
+        .catch((error) => {
+          console.error(error);
+        })
+        .finally(() => {
+          Loading.hide();
+        });
+    },
   },
 };
 </script>
