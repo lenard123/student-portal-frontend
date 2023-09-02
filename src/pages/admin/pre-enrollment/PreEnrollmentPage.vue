@@ -1,8 +1,17 @@
 <template>
   <div class="tw-p-8">
     <div class="tw-text-4xl tw-font-bold">Pre-Enrollment</div>
-    <q-table
+
+    <q-btn
       class="tw-mt-8"
+      label="Track Registration"
+      color="primary"
+      icon="search"
+      @click="trackRegistration"
+    />
+
+    <q-table
+      class="tw-mt-4"
       :columns="columns"
       :loading="store.loading"
       :rows="enrollees"
@@ -28,6 +37,7 @@
       </template>
       <template v-slot:body-cell-action="{ row }">
         <q-td align="right">
+          <q-btn @click="print(row.id)" icon="print" flat />
           <q-btn
             :to="{ name: 'admin:pre-enrollment/info', params: { id: row.id } }"
             icon="visibility"
@@ -41,10 +51,14 @@
 </template>
 
 <script setup>
+import { Loading } from "quasar";
+import { api } from "src/boot/axios";
+import useDialog from "src/composables/useDialog";
 import { useAcademicYearStore } from "src/stores/academic-year";
 import { useAppStore } from "src/stores/app";
 import { useEnrollmentStore } from "src/stores/enrollment";
 import { computed, onMounted, ref, watch } from "vue";
+import TrackRegistrationDialog from "./TrackRegistrationDialog.vue";
 
 const appStore = useAppStore();
 const academicYearStore = useAcademicYearStore();
@@ -62,7 +76,7 @@ const columns = [
   {
     name: "transaction_id",
     label: "Transaction ID",
-    field: (row) => row.student.current_registration.transaction_id,
+    field: (row) => row.transaction_id,
   },
   { name: "name", label: "Name", field: (row) => row.student.fullname },
   {
@@ -78,6 +92,38 @@ const columns = [
   { name: "status", label: "Status", field: "status" },
   { name: "action", label: "Action" },
 ];
+const { dialog } = useDialog();
+const trackRegistration = () => {
+  dialog({
+    component: TrackRegistrationDialog,
+  });
+};
+
+const print = (id) => {
+  // window.location.href = `${api.defaults.baseURL}/enrollment/${id}/download`;
+  Loading.show();
+  api
+    .get(`/enrollment/${id}/download`, {
+      responseType: "blob",
+    })
+    .then((response) => {
+      const href = URL.createObjectURL(response.data);
+
+      // create "a" HTML element with href to file & click
+      const link = document.createElement("a");
+      link.href = href;
+      link.setAttribute("download", "registration.pdf"); //or any other extension
+      document.body.appendChild(link);
+      link.click();
+
+      // clean up "a" element & remove ObjectURL
+      document.body.removeChild(link);
+      URL.revokeObjectURL(href);
+    })
+    .finally(() => {
+      Loading.hide();
+    });
+};
 
 watch(department, () => {
   if (department.value == undefined) return;

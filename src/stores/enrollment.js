@@ -40,6 +40,7 @@ export const useEnrollmentStore = defineStore("enrollment", function () {
 
   const enroll = async (grade_level_id) => {
     const { data } = await api.post("/enrollment", { grade_level_id });
+    registrations.value.push(data);
     return data;
   };
 

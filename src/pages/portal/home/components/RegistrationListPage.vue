@@ -18,17 +18,23 @@
           @click="enroll"
         />
       </template>
+      <template v-slot:body-cell-actions="{ row }">
+        <q-td align="right">
+          <q-btn @click="print(row.id)" icon="print" flat />
+        </q-td>
+      </template>
     </q-table>
   </div>
 </template>
 
 <script setup>
 import moment from "moment";
-import { useQuasar } from "quasar";
+import { Loading, useQuasar } from "quasar";
 import EnrollmentDialog from "src/pages/student/enrollment/EnrollmentDialog.vue";
 import { useEnrollmentStore } from "src/stores/enrollment";
 import { onMounted, ref } from "vue";
 // import EnrollmentDialog from "../../enrollment/EnrollmentDialog.vue";
+import { api } from "src/boot/axios";
 
 const columns = [
   {
@@ -59,6 +65,32 @@ const enroll = () => {
   $q.dialog({
     component: EnrollmentDialog,
   });
+};
+
+const print = (id) => {
+  // window.location.href = `${api.defaults.baseURL}/enrollment/${id}/download`;
+  Loading.show();
+  api
+    .get(`/enrollment/${id}/download`, {
+      responseType: "blob",
+    })
+    .then((response) => {
+      const href = URL.createObjectURL(response.data);
+
+      // create "a" HTML element with href to file & click
+      const link = document.createElement("a");
+      link.href = href;
+      link.setAttribute("download", "registration.pdf"); //or any other extension
+      document.body.appendChild(link);
+      link.click();
+
+      // clean up "a" element & remove ObjectURL
+      document.body.removeChild(link);
+      URL.revokeObjectURL(href);
+    })
+    .finally(() => {
+      Loading.hide();
+    });
 };
 
 onMounted(() => {
