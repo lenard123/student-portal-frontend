@@ -50,7 +50,7 @@
       </div>
     </section>
     <section class="tw-px-8 tw-flex tw-flex-col">
-      <h3 class="text-center flex-shrink-0">About Us</h3>
+      <h3 class="text-center py-4">About Us</h3>
       <div class="tw-container tw-mx-auto tw-grid tw-grid-cols-4 tw-gap-4">
         <q-card
           class="text-white"
