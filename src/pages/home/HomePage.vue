@@ -63,10 +63,9 @@
           <q-separator inset />
 
           <q-card-section>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa et
-            soluta earum consectetur facere impedit laboriosam eveniet pariatur
-            maiores ducimus. Numquam vel sint maxime aspernatur nemo recusandae
-            atque dolore labore.
+            <p>As a non-denominational learning institution run by the Lord's Wisdom Academy of Caloocan, Inc.  Board pf incorporators, we are:</p>
+            <p>-Comitted to offer quality education based on the curricular set by the Department of Education and the academic, moral, and social standards set by the school </p>
+            <p>-to provide pupils with an equitable access to quality education. Develop in them maturity and responsibility, foster in them relations with God to be just in their dealing with others.</p>
           </q-card-section>
         </q-card>
 
@@ -81,10 +80,7 @@
           <q-separator inset />
 
           <q-card-section>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa et
-            soluta earum consectetur facere impedit laboriosam eveniet pariatur
-            maiores ducimus. Numquam vel sint maxime aspernatur nemo recusandae
-            atque dolore labore.
+            Rooted by the belief of importance of quality education, the board of the The Lord's Wisdom Academy of Caloocan, Inc. envisions to have pupils who are literate, responsible, disciplined, God-fearing, environmental, friendly and globally competitive to the changing demand of time.
           </q-card-section>
         </q-card>
 
@@ -99,10 +95,7 @@
           <q-separator inset />
 
           <q-card-section>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa et
-            soluta earum consectetur facere impedit laboriosam eveniet pariatur
-            maiores ducimus. Numquam vel sint maxime aspernatur nemo recusandae
-            atque dolore labore.
+            At The Lord's Wisdom Academy of Caloocan INC, We take pride in providing a nurturing and inspiring environment that fosters academic excellence, personal growth, and character development. Our dedicated team of educators is committed to ensuring that each student receives the best possible education, tailored to their unique abilities and interests.
           </q-card-section>
         </q-card>
 
