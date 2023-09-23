@@ -1,5 +1,5 @@
 <template>
-  <div class="tw-p-8">
+  <app-page-container>
     <div class="tw-text-4xl tw-font-bold">Grade Levels</div>
     <q-table
       class="tw-mt-8"
@@ -35,7 +35,7 @@
         </q-td>
       </template>
     </q-table>
-  </div>
+  </app-page-container>
 </template>
 
 <script setup>

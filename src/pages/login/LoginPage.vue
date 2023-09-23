@@ -1,7 +1,7 @@
 <template>
   <div class="tw-h-screen tw-flex tw-flex-col">
     <div
-      class="tw-bg-primary tw-h-16 tw-text-white tw-flex tw-items-center tw-px-8"
+      class="tw-bg-primary tw-h-16 tw-text-white tw-flex tw-items-center tw-px-8 tw-flex-shrink-0"
     >
       <router-link
         :to="{ name: 'home' }"
@@ -18,10 +18,10 @@
     </div>
     <div class="tw-flex-grow tw-bg-red-100 background tw-py-8">
       <div
-        class="tw-w-full tw-max-w-[60vw] tw-mx-auto tw-h-full tw-rounded-3xl tw-shadow-md tw-overflow-hidden tw-grid tw-grid-cols-2"
+        class="tw-w-full tw-max-w-[90vw] sm:tw-max-w-[80vw] xl:tw-max-w-[60vw] tw-mx-auto tw-h-full tw-rounded-3xl tw-shadow-md tw-overflow-hidden tw-grid tw-grid-cols-1 md:tw-grid-cols-2"
       >
         <div
-          class="tw-bg-primary tw-flex tw-flex-col tw-items-center tw-justify-end tw-px-4"
+          class="tw-bg-primary hidden md:tw-flex tw-flex-col tw-items-center tw-justify-end tw-px-4"
         >
           <div
             class="tw-text-white tw-flex-grow tw-font-light tw-text-3xl text-center tw-flex tw-items-center"

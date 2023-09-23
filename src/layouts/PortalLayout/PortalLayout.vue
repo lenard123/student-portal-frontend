@@ -1,53 +1,18 @@
 <template>
   <div class="tw-bg-slate-50 tw-flex" v-if="!!store.user">
-    <aside
-      class="tw-z-10 tw-max-w-[300px] tw-h-screen tw-bg-white tw-pt-8 tw-flex-shrink-0 tw-w-full tw-shadow"
-    >
-      <div class="tw-flex tw-flex-col tw-items-center tw-px-4">
-        <q-avatar size="8rem">
-          <img :src="user.avatar" />
-        </q-avatar>
-        <div class="tw-text-xl tw-mt-2">{{ user.fullname }}</div>
-        <div class="tw-text-slate-500 tw-capitalize">{{ user.role }}</div>
-
-        <q-btn
-          :to="{ name: 'portal:profile' }"
-          class="tw-w-full tw-mt-3"
-          label="View Profile"
-          color="primary"
-        />
-      </div>
-      <q-list class="tw-mt-8">
-        <q-item :to="{ name: 'portal:home' }" exact clickable>
-          <q-item-section avatar>
-            <q-icon name="home" />
-          </q-item-section>
-          <q-item-section>Home</q-item-section>
-        </q-item>
-        <q-item clickable :to="{ name: 'portal:messages' }">
-          <q-item-section avatar>
-            <q-icon name="forum" />
-          </q-item-section>
-          <q-item-section>Messages</q-item-section>
-        </q-item>
-        <!-- <q-item :to="{ name: 'student:schedules' }">
-          <q-item-section avatar>
-            <q-icon name="event" />
-          </q-item-section>
-          <q-item-section>Calendar</q-item-section>
-        </q-item> -->
-        <q-item clickable @click="logout">
-          <q-item-section avatar>
-            <q-icon name="logout" />
-          </q-item-section>
-          <q-item-section>Logout</q-item-section>
-        </q-item>
-      </q-list>
-    </aside>
+    <PortalSidebar
+      class="tw-z-10 tw-max-w-[300px] tw-hidden lg:tw-block tw-h-screen tw-flex-shrink-0 tw-w-full tw-shadow"
+    />
     <div class="tw-flex-grow tw-flex tw-flex-col">
       <header
-        class="tw-z-10 tw-bg-white tw-h-16 tw-shadow tw-flex tw-items-center tw-px-8"
+        class="tw-z-10 tw-bg-white tw-h-16 tw-shadow tw-flex tw-items-center tw-px-4 md:tw-px-8"
       >
+        <q-btn
+          class="lg:tw-hidden"
+          icon="menu"
+          unelevated
+          @click="sidebar = true"
+        />
         <router-link
           :to="{ name: 'student:home' }"
           class="tw-flex tw-gap-4 tw-items-center tw-no-underline tw-text-slate-600"
@@ -65,6 +30,9 @@
         <router-view />
       </main>
     </div>
+    <q-dialog v-model="sidebar" position="left" fullHeight maximized>
+      <PortalSidebar class="tw-bg-white tw-w-[300px]" />
+    </q-dialog>
   </div>
 </template>
 
@@ -72,8 +40,9 @@
 import { LoadingBar } from "quasar";
 import { useConfirmDialog } from "src/composables/useDialog";
 import { useAuthStore } from "src/stores/auth";
-import { computed, provide } from "vue";
+import { computed, provide, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import PortalSidebar from "./PortalSidebar.vue";
 
 export default {
   async beforeRouteEnter(to, from, next) {
@@ -100,6 +69,7 @@ const user = computed(() => store.user);
 const route = useRoute();
 const router = useRouter();
 const { dialog } = useConfirmDialog();
+const sidebar = ref(true);
 
 provide("user", user);
 provide("refreshUser", store.refetchCurrentUser);

@@ -2,8 +2,9 @@
   <q-dialog ref="dialogRef" persistent>
     <q-card class="tw-w-full">
       <q-form @submit="handleSubmit">
-        <q-card-section class="tw-h-16 tw-bg-primary tw-text-white">
+        <q-card-section class="tw-h-16 tw-bg-primary tw-text-white tw-flex">
           <div class="tw-text-2xl">Register</div>
+          <q-icon name="close" class="tw-ml-auto" @click="onDialogCancel" />
         </q-card-section>
         <q-stepper ref="stepper" v-model="step" animated>
           <q-step prefix="1" :name="1" :done="step > 1" title="">
