@@ -1,5 +1,5 @@
 <template>
-  <div class="tw-p-8">
+  <app-page-container>
     <div class="tw-text-4xl tw-font-bold">Registration Info</div>
 
     <q-card class="tw-mt-8">
@@ -93,7 +93,7 @@
         v-if="enrollee.status == 'pending'"
       />
     </div>
-  </div>
+  </app-page-container>
 </template>
 <script>
 import { LoadingBar } from "quasar";

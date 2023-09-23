@@ -1,5 +1,5 @@
 <template>
-  <div class="tw-p-8">
+  <app-page-container>
     <div class="tw-text-4xl tw-font-bold">Sections</div>
     <div class="tw-mt-8">
       <q-btn
@@ -41,7 +41,7 @@
         </q-td>
       </template>
     </q-table>
-  </div>
+  </app-page-container>
 </template>
 
 <script setup>

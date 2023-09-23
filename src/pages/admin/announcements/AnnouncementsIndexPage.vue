@@ -1,5 +1,5 @@
 <template>
-  <div class="tw-p-8">
+  <app-page-container>
     <div class="tw-text-4xl tw-font-bold">Announcements</div>
 
     <q-card class="tw-mt-4">
@@ -51,7 +51,7 @@
         </template>
       </q-table>
     </q-card>
-  </div>
+  </app-page-container>
   <add-announcement-modal v-model="addAnnouncement" />
   <edit-announcement-modal v-model="editAnnouncement" />
   <app-confirm-dialog

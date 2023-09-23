@@ -1,5 +1,5 @@
 <template>
-  <div class="tw-p-8" v-if="store.initialize">
+  <app-page-container v-if="store.initialize">
     <div class="tw-text-4xl tw-font-bold">Faculty Information</div>
     <div class="tw-mt-8 tw-grid tw-grid-cols-3 tw-gap-4 tw-items-start">
       <q-card>
@@ -30,7 +30,7 @@
         </template>
       </q-table>
     </div>
-  </div>
+  </app-page-container>
 </template>
 
 <script setup>

@@ -1,5 +1,5 @@
 <template>
-  <div class="tw-p-8" v-if="store.initialized">
+  <app-page-container v-if="store.initialized">
     <div class="tw-text-4xl tw-font-bold">Class Schedules</div>
     <q-table
       class="tw-mt-8"
@@ -34,7 +34,7 @@
         </q-td>
       </template>
     </q-table>
-  </div>
+  </app-page-container>
 </template>
 
 <script setup>
