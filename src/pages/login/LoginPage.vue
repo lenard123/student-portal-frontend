@@ -18,7 +18,7 @@
     </div>
     <div class="tw-flex-grow tw-bg-red-100 background tw-py-8">
       <div
-        class="tw-w-full tw-max-w-[80vw] xl:tw-max-w-[60vw] tw-mx-auto tw-h-full tw-rounded-3xl tw-shadow-md tw-overflow-hidden tw-grid tw-grid-cols-1 md:tw-grid-cols-2"
+        class="tw-w-full tw-max-w-[90vw] sm:tw-max-w-[80vw] xl:tw-max-w-[60vw] tw-mx-auto tw-h-full tw-rounded-3xl tw-shadow-md tw-overflow-hidden tw-grid tw-grid-cols-1 md:tw-grid-cols-2"
       >
         <div
           class="tw-bg-primary hidden md:tw-flex tw-flex-col tw-items-center tw-justify-end tw-px-4"
