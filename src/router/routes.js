@@ -11,6 +11,13 @@ const routes = [
     meta: { middlewares: ["guest"] },
     component: () => import("pages/login/LoginPage.vue"),
   },
+  
+  {
+    path: "/student-login",
+    name: "student-login",
+    meta: { middlewares: ["guest"] },
+    component: () => import("pages/login/StudentLoginPage.vue"),
+  },
 
   {
     path: "/admin",
