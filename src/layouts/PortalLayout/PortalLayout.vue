@@ -1,5 +1,5 @@
 <template>
-  <div class="tw-bg-slate-50 tw-flex" v-if="!!store.user">
+  <div class="tw-bg-slate-50 tw-flex tw-min-h-screen" v-if="!!store.user">
     <PortalSidebar
       class="tw-z-10 tw-max-w-[300px] tw-hidden lg:tw-block tw-h-screen tw-flex-shrink-0 tw-w-full tw-shadow"
     />
@@ -69,7 +69,7 @@ const user = computed(() => store.user);
 const route = useRoute();
 const router = useRouter();
 const { dialog } = useConfirmDialog();
-const sidebar = ref(true);
+const sidebar = ref(false);
 
 provide("user", user);
 provide("refreshUser", store.refetchCurrentUser);
