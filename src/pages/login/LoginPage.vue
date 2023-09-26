@@ -40,7 +40,7 @@
             class="tw-mt-8 tw-capitalize"
             popup-content-class="tw-capitalize"
             standout
-            :options="['student', 'faculty', 'admin']"
+            :options="['faculty', 'admin']"
             label="Login as"
           />
           <q-input
@@ -105,7 +105,7 @@ import ForgotPasswordDialog from "./ForgotPasswordDialog.vue";
 
 const route = useRoute();
 const data = reactive({
-  role: "Student",
+  role: "Faculty",
   email: route.query.email,
   password: "",
 });
