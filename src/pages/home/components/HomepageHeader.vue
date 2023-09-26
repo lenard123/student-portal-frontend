@@ -33,7 +33,7 @@
           label="Login"
           rounded
           color="primary"
-          to="/login"
+          to="/student-login"
         />
         <q-btn class="md:tw-hidden" @click="sidebar = true" icon="menu" flat />
       </div>
