@@ -73,6 +73,12 @@
             </template>
           </q-input>
           <q-btn type="submit" class="tw-mt-4" color="primary" label="Submit" />
+          <q-btn
+            @click="forgotPassword"
+            flat
+            class="tw-mt-4"
+            label="Forgot Password?"
+          />
         </q-form>
       </div>
     </div>
@@ -86,6 +92,7 @@
 
 <script setup>
 import { Loading } from "quasar";
+import useDialog from "src/composables/useDialog";
 import {
   ROLE_ADMIN,
   ROLE_FACULTY,
@@ -94,6 +101,7 @@ import {
 } from "src/stores/auth";
 import { reactive, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import ForgotPasswordDialog from "./ForgotPasswordDialog.vue";
 
 const route = useRoute();
 const data = reactive({
@@ -121,6 +129,17 @@ const handleSubmit = () => {
     .finally(() => {
       Loading.hide();
     });
+};
+
+const { dialog } = useDialog();
+
+const forgotPassword = () => {
+  dialog({
+    component: ForgotPasswordDialog,
+    componentProps: {
+      email: data.email,
+    },
+  });
 };
 </script>
 
