@@ -1,5 +1,5 @@
 <template>
-  <div class="tw-container tw-p-8">
+  <app-page-container>
     <div
       class="tw-text-white tw-p-4 tw-rounded"
       :class="getBackgroundColor(schedule.id)"
@@ -13,8 +13,10 @@
         Section: <span class="tw-font-bold">{{ schedule.section.name }}</span>
       </div>
     </div>
-    <div class="tw-mt-4 tw-flex tw-gap-4 tw-items-start">
-      <q-card class="tw-flex-shrink-0">
+    <div
+      class="tw-mt-4 tw-flex tw-flex-col lg:tw-flex-row tw-gap-4 tw-items-start"
+    >
+      <q-card class="tw-flex-shrink-0 tw-w-full lg:tw-w-auto">
         <q-list class="tw-min-w-[270px]">
           <q-item-label header>Menu</q-item-label>
           <q-item :to="{ name: 'portal:subjects/overview' }" clickable exact>
@@ -44,9 +46,9 @@
         </q-list>
       </q-card>
 
-      <router-view />
+      <router-view class="tw-w-full" />
     </div>
-  </div>
+  </app-page-container>
 </template>
 <script>
 import { LoadingBar } from "quasar";
