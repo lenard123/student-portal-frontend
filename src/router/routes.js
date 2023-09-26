@@ -2,7 +2,7 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: () => import("pages/home/HomePage.vue"),
+    component: () => import("pages/home/HomePage1.vue"),
   },
 
   {
