@@ -51,7 +51,7 @@
           </q-item>
         </q-list>
         <q-card-section>
-          <q-btn to="/login" class="tw-w-full" label="Login" color="primary" />
+          <q-btn to="/student-login" class="tw-w-full" label="Login" color="primary" />
         </q-card-section>
       </q-card>
     </q-dialog>
