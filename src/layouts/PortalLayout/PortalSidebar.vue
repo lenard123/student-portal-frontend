@@ -54,7 +54,13 @@ const logout = () => {
     message: "Are you sure to logout?",
     async onSubmit() {
       await store.logout(route.params.role);
-      router.push({ name: "login" });
+      
+      if (route.params.role == 'student') {
+        router.push({ name: "student-login" });
+      } else {
+        router.push({ name: "login" });
+      }
+      
     },
   });
 };
