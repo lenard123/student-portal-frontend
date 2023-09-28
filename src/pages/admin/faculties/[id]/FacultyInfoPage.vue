@@ -1,7 +1,9 @@
 <template>
   <app-page-container v-if="store.initialize">
     <div class="tw-text-4xl tw-font-bold">Faculty Information</div>
-    <div class="tw-mt-8 tw-grid tw-grid-cols-3 tw-gap-4 tw-items-start">
+    <div
+      class="tw-mt-8 tw-grid tw-grid-cols-1 md:tw-grid-cols-4 tw-gap-4 tw-items-start"
+    >
       <q-card>
         <img :src="store.faculty.avatar" />
         <q-card-section>
@@ -12,7 +14,7 @@
         </q-card-section>
       </q-card>
       <q-table
-        class="tw-col-span-2"
+        class="tw-col-span-3"
         :columns="columns"
         :rows="store.faculty.subjects"
       >

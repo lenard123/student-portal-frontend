@@ -11,7 +11,7 @@ const routes = [
     meta: { middlewares: ["guest"] },
     component: () => import("pages/login/LoginPage.vue"),
   },
-  
+
   {
     path: "/student-login",
     name: "student-login",
@@ -51,6 +51,16 @@ const routes = [
         path: "faculties",
         name: "admin:faculties",
         component: () => import("pages/admin/faculties/FacultiesIndexPage.vue"),
+      },
+      {
+        path: "students",
+        name: "admin:students",
+        component: () => import("pages/admin/students/StudentsIndexPage.vue"),
+      },
+      {
+        path: "students/:id",
+        name: "admin:students/info",
+        component: () => import("pages/admin/students/StudentsInfoPage.vue"),
       },
       {
         path: "faculties/:id",

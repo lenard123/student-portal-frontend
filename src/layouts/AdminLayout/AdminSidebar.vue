@@ -43,7 +43,12 @@
           </q-item-section>
           <q-item-section>Faculty</q-item-section>
         </q-item>
-
+        <q-item :to="{ name: 'admin:students' }" clickable>
+          <q-item-section avatar>
+            <q-icon name="mdi-account-group" />
+          </q-item-section>
+          <q-item-section>Students</q-item-section>
+        </q-item>
         <q-item clickable :to="{ name: 'admin:pre-enrollment' }">
           <q-item-section avatar>
             <q-icon name="mdi-account-school" />
