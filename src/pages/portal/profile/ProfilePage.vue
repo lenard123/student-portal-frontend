@@ -1,9 +1,11 @@
 <template>
-  <div class="tw-p-8">
+  <app-page-container>
     <div class="tw-text-2xl tw-font-bold">User Profile</div>
 
-    <div class="tw-mt-8 tw-gap-4 tw-flex tw-items-start tw-w-full">
-      <ProfileInfoCard class="tw-w-1/4 tw-flex-shrink-0" />
+    <div
+      class="tw-mt-8 tw-gap-4 tw-flex tw-flex-col md:tw-flex-row tw-items-start tw-w-full"
+    >
+      <ProfileInfoCard class="tw-w-full md:tw-w-1/4 tw-flex-shrink-0" />
       <q-card class="flex-grow tw-w-full">
         <q-tabs v-model="tab" align="left">
           <q-tab name="basic-info" label="Basic Info" />
@@ -21,7 +23,7 @@
         </q-tab-panels>
       </q-card>
     </div>
-  </div>
+  </app-page-container>
 </template>
 <script setup>
 import { ROLE_STUDENT } from "src/stores/auth";

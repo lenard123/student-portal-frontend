@@ -28,7 +28,7 @@
         <q-item v-if="user.role == 'student'">
           <q-item-section>
             <q-item-label>Student Number</q-item-label>
-            <q-item-label caption>{{ user.info.student_id }}</q-item-label>
+            <q-item-label caption>{{ user.student_id }}</q-item-label>
           </q-item-section>
 
           <q-item-section>
