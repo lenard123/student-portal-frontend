@@ -77,7 +77,7 @@ const students = ref([]);
 const fetchStudents = async (id) => {
   loading.value = true;
   const { data } = await api
-    .get("/students/?academic_year_id=" + id)
+    .get("/students", { params: { academic_year_id: id } })
     .finally(() => {
       loading.value = false;
     });
