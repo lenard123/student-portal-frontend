@@ -12,10 +12,9 @@
           Student Portal
         </h3>
         <p class="tw-mt-8 tw-text-lg tw-font-light">
-          The purpose of Schools is to prepare students with promise to enhance
-          their intellectual, physical, social, emotional, spiritual, and
-          artistic growth so that they may realize their power for good as
-          citizens.
+          The Purpose of the School is to provide quality education to enhance
+          their intellectual, physical, social, emotional, spiritual and
+          artistic growth. All of this is a preparation to their education life.
         </p>
         <q-btn
           class="tw-mt-8 tw-px-8"
