@@ -54,7 +54,6 @@
                 filled
                 label="Contact Number"
                 required
-                type="number"
                 maxlength="10"
               />
               <q-select
