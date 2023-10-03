@@ -54,7 +54,7 @@
                 filled
                 label="Contact Number"
                 required
-                maxlength="10"
+                maxlength="11"
               />
               <q-select
                 :options="appStore.departments"
