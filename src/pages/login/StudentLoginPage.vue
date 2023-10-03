@@ -41,7 +41,7 @@
             outlined
             label="Email"
             type="email"
-            maxlength="30"
+            maxlength="40"
           >
             <template v-slot:prepend>
               <q-icon name="email" />
@@ -53,7 +53,7 @@
             outlined
             label="Password"
             :type="isPwd ? 'password' : 'text'"
-            maxlength="30"
+            maxlength="40"
           >
             <template v-slot:prepend>
               <q-icon name="lock" />

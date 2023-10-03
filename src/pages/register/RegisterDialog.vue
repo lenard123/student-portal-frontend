@@ -22,12 +22,14 @@
                 filled
                 label="Firstname"
                 required
+                maxlength="40"
               />
               <q-input
                 v-model="data.middlename"
                 dense
                 filled
                 label="Middlename"
+                maxlength="40"
               />
               <q-input
                 v-model="data.lastname"
@@ -35,6 +37,7 @@
                 filled
                 label="Lastname"
                 required
+                maxlength="40"
               />
               <q-input
                 v-model="data.email"
@@ -43,6 +46,7 @@
                 label="Email"
                 required
                 type="email"
+                maxlength="40"
               />
               <q-input
                 v-model="data.contact_number"
@@ -50,6 +54,8 @@
                 filled
                 label="Contact Number"
                 required
+                type="number"
+                maxlength="10"
               />
               <q-select
                 :options="appStore.departments"
@@ -79,6 +85,7 @@
                   label="Password"
                   required
                   type="password"
+                  maxlength="40"
                 />
                 <q-input
                   v-model="data.password_confirmation"
@@ -87,6 +94,7 @@
                   label="Confirm Password"
                   required
                   type="password"
+                  maxlength="40"
                 />
               </div>
             </div>
@@ -113,6 +121,7 @@
                 class="tw-mt-4 tw-uppercase"
                 outlined
                 v-model="data.code"
+                maxlength="6"
               >
                 <template v-slot:prepend>
                   <q-icon name="lock" />
