@@ -61,7 +61,7 @@
             outlined
             label="Password"
             :type="isPwd ? 'password' : 'text'"
-            maxlength="50"
+            maxlength="30"
           >
             <template v-slot:prepend>
               <q-icon name="lock" />
