@@ -49,7 +49,7 @@
             outlined
             label="Email"
             type="email"
-            maxlength="50"
+            maxlength="30"
           >
             <template v-slot:prepend>
               <q-icon name="email" />
